@@ -1,21 +1,12 @@
 #region Movimentação
-// Movimento vertical
-if (keyboard_check(ord("W")) && !keyboard_check(ord("S"))) {
-    speed_y -= acceleration_y;
-}
-else if (keyboard_check(ord("S")) && !keyboard_check(ord("W"))) {
-    speed_y += acceleration_y;
-}
-else {
-    speed_y *= 0.9;
-}
-
 // Movimento horizontal
 if (keyboard_check(ord("A")) && !keyboard_check(ord("D"))) {
     speed_x -= acceleration_x;
+	direction_moviment = -1;
 }
 else if (keyboard_check(ord("D")) && !keyboard_check(ord("A"))) {
     speed_x += acceleration_x;
+	direction_moviment = 1;
 }
 else {
     speed_x *= 0.9;
@@ -23,21 +14,24 @@ else {
 
 // LIMITE DE VELOCIDADE
 speed_x = clamp(speed_x, -4, 4);
-speed_y = clamp(speed_y, -4, 4);
 
 // Aplica movimento
 x += speed_x;
-y += speed_y;
 
 //Troca de sprite durante movimentação
-if(speed_x == 0 and speed_y ==0){
-	sprite_index = spr_player_parado;
+if(speed_x <= 0.1 && speed_x >= -0.1){
+	if (direction_moviment == 1){
+		sprite_index = spr_player_parado_direita;
+	}
+	else{
+		sprite_index = spr_player_parado_esquerda;
+	}
 }
 else{
-	if(speed_x > 0 || speed_y < 0){
+	if(speed_x > 0){
 		sprite_index = spr_direita_player;
 	}
-	else if(speed_x < 0 || speed_y > 0){
+	else if(speed_x < 0){
 		sprite_index = spr_esquerda_player;
 	}
 }
@@ -82,14 +76,20 @@ if (keyboard_check(vk_down) && !is_dashing) {
 // Inicia o dash
 if (keyboard_check_pressed(vk_up) && !is_dashing) {
     is_dashing = true;
-    dash_direction = (speed_x >= 0) ? 1 : -1;
+    dash_direction = (direction_moviment == 1) ? 1 : -1;
     dash_speed = carregamento_dash / 5; // ajusta isso pra calibrar a força
     carregamento_dash = 0;
 }
 
 // Executa o dash suavemente
 if (is_dashing) {
-    obj_player.x += dash_speed * dash_direction;
+    if (dash_direction == 1) {
+        sprite_index = sprite_peidando_direita;
+    } else {
+        sprite_index = sprite_peidando_esquerda;
+    }
+
+    x += dash_speed * dash_direction;
 
     // Suave desaceleração
     dash_speed -= 0.5;
@@ -99,6 +99,7 @@ if (is_dashing) {
         is_dashing = false;
     }
 }
+
 #endregion
 
 show_debug_message(speed_x)

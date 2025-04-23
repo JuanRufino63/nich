@@ -8,3 +8,4 @@ carregamento_dash = 0;
 dash_speed = 0;
 is_dashing = false;
 dash_direction = 1;
+direction_moviment = 1
