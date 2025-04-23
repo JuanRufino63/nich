@@ -1,13 +1,19 @@
 //Estados
-patrulha = true;
-alerta = false;
-perseguir = false;
-atacar = false;
-fugindo = false;
-morto = false;
+state = "patrulha"
 //Variaeis comuns
 hp_mob = 20;
 dano_comum = 2;
-
-speed_x = 0
-speed_y = 0
+dir = 1;
+alert_range = 500;
+speed_x = 2;
+speed_y = 2;
+patrol_x1 = x - 100;
+patrol_x2 = x + 100;
+target = obj_player;
+// DASH BACK TIMER
+dash_timer = 2 * room_speed; // 2 segundos em frames
+dash_cooldown = dash_timer;  // contador
+dash_duration = 10; // duração do dash em frames
+dash_progress = 0; // contador do dash
+is_dashing_back = false;
+dash_distance = -200; // distância pra trás (em X)

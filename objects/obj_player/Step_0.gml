@@ -123,5 +123,9 @@ if (is_dashing) {
         is_dashing = false;
     }
 }
+//Habilidade n2 fechar jogo
+if (keyboard_check(ord("P"))){
+	game_end();
+}
 
 #endregion
