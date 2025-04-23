@@ -14,9 +14,7 @@ else {
 
 // LIMITE DE VELOCIDADE
 speed_x = clamp(speed_x, -4, 4);
-
-// Aplica movimento
-x += speed_x;
+speed_y = clamp(speed_y, -4, 4);
 
 //Troca de sprite durante movimentação
 if(speed_x <= 0.1 && speed_x >= -0.1){
@@ -35,6 +33,32 @@ else{
 		sprite_index = spr_esquerda_player;
 	}
 }
+//Pulo
+// Quando a tecla de espaço for liberada, inicia o pulo
+if (keyboard_check_released(vk_space) && !jump) {
+    jump_timer = room_speed; // 1 segundo de pulo
+    jump = true;
+    speed_y = -100; // Velocidade inicial para cima (negativa)
+}
+
+// Se estiver pulando
+if (jump) {
+    jump_timer -= 1;
+
+    // Desacelera suavemente (exemplo simples, pode ser ajustado)
+    speed_y += 1.0; // Gravidade puxando pra baixo
+
+    y += speed_y;
+
+    // Quando acabar o tempo do pulo ou atingir o chão (por segurança)
+    if (jump_timer <= 0 || y >= room_height - sprite_height/2) {
+        jump = false;
+        speed_y = 0;
+        y = min(y, room_height - sprite_height/2); // Previne passar do chão
+    }
+}
+// Aplica movimento
+x += speed_x;
 #endregion
 
 #region Colisão player
@@ -101,6 +125,3 @@ if (is_dashing) {
 }
 
 #endregion
-
-show_debug_message(speed_x)
-show_debug_message(speed_y)

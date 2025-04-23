@@ -3,6 +3,8 @@ speed_x = 0;
 speed_y = 0;
 acceleration_y = 0.2;
 acceleration_x = 0.2;
+jump = false;
+jump_timer = 0;
 ///Habilidades Variaveis
 carregamento_dash = 0;
 dash_speed = 0;
