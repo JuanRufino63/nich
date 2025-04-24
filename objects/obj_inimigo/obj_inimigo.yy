@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_player_parado_esquerda",
-    "path":"sprites/spr_player_parado_esquerda/spr_player_parado_esquerda.yy",
+    "name":"spr_direita_parado",
+    "path":"sprites/spr_direita_parado/spr_direita_parado.yy",
   },
   "spriteMaskId":null,
   "visible":true,

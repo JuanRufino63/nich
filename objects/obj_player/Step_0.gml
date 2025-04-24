@@ -49,9 +49,9 @@ switch (state) {
 
         // Sprite movimentação
         if (abs(speed_x) < 0.1) {
-            sprite_index = (direction_moviment == 1) ? spr_player_parado_direita : spr_player_parado_esquerda;
+            sprite_index = (direction_moviment == 1) ? spr_direita_parado : spr_esquerda_parado;
         } else {
-            sprite_index = (speed_x > 0) ? spr_direita_player : spr_esquerda_player;
+            sprite_index = (speed_x > 0) ? spr_player_direita : spr_player_esquerda;
         }
 
         // PULO
@@ -126,7 +126,7 @@ switch (state) {
 
     case "parado":
         parado_ = true;
-		sprite_index = spr_player_parado_direita;
+		sprite_index = spr_player_direita;
         break;
 
     case "morte":
