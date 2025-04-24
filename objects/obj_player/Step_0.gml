@@ -1,6 +1,6 @@
 #region Estados
 
-// Morte
+// Morte // teste
 if (state != "morte" && global.hp_player <= 0) {
     state = "morte";
 }
@@ -44,8 +44,8 @@ switch (state) {
             speed_x *= 0.9;
         }
 
-        speed_x = clamp(speed_x, -4, 4);
-        speed_y = clamp(speed_y, -4, 4);
+        speed_x = clamp(speed_x, -2, 2);
+        speed_y = clamp(speed_y, -2, 2);
 
         // Sprite movimentação
         if (abs(speed_x) < 0.1) {
