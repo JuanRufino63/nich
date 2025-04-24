@@ -15,3 +15,9 @@ direction_moviment = 1
 global.hp_player = 10;
 global.dano_player = true;
 global.inv = 0;
+//estados
+state = "normal";
+attack_time = 20;
+ataco = 1;
+global.hits = 0;
+parado_ = false;
